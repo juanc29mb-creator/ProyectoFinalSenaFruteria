@@ -90,6 +90,114 @@
     scroll-behavior: smooth;
   }
 }
+/* =========================================
+   ESTILOS PARA EL LOGO (Navbar Branding)
+   ========================================= */
+.navbar-brand img {
+  height: 2.5rem;
+  width: 2.5rem;
+  display: block;
+  vertical-align: middle;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #f4c20d;
+  background: #fff;
+  box-shadow: 0 0 0 2px rgba(244, 194, 13, 0.2);
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
+  color: var(--bs-dark);
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
+/* Espaciado general del header para que respire bien */
+header.masthead {
+  padding-top: 10rem;
+  padding-bottom: 6rem;
+  text-align: center;
+  color: #fff;
+  background-image: url("/static/img/team/header.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+/* Control del contenedor del logo */
+.masthead-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.25rem auto 2rem auto;
+  padding: 0;
+  width: auto;
+  background: transparent;
+  border-radius: 0;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+/* Tamaño responsivo perfecto para el logo */
+.masthead-logo {
+  display: block;
+  width: min(100%, 320px);
+  max-width: 320px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.2));
+}
+
+.masthead-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 170px;
+  min-height: 52px;
+  padding: 0.85rem 1.5rem;
+  border: 2px solid #ffc800;
+  border-radius: 0.35rem;
+  background-color: #ffc800;
+  color: #212529;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.masthead-cta:hover,
+.masthead-cta:focus-visible {
+  border-color: #fff;
+  background-color: #fff;
+  color: #212529;
+  transform: translateY(-2px);
+}
+
+/* Ajustes para dispositivos móviles (iPhone) */
+@media (max-width: 576px) {
+  header.masthead {
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+  }
+  .masthead-logo {
+    max-width: 230px;
+  }
+  .masthead-cta {
+    min-width: 155px;
+    min-height: 48px;
+    padding: 0.75rem 1.1rem;
+    font-size: 0.85rem;
+  }
+}
 
 body {
   margin: 0;
@@ -102,6 +210,129 @@ body {
   background-color: var(--bs-body-bg);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* =========================================
+   ESTILOS PARA LA VISTA DE LOGIN (Frutería)
+   ========================================= */
+.login-body {
+  background-color: #f4f7f6;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem 1rem;
+  background-color: #f4f7f6;
+}
+
+.login-card {
+  width: min(100%, 28rem);
+  padding: 2rem;
+  border: none;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.login-card:hover {
+  transform: translateY(-3px);
+}
+
+.login-card h1 {
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+  font-weight: 700;
+  text-align: center;
+}
+
+.login-card > p {
+  margin-bottom: 1.5rem;
+  color: #6c757d;
+  text-align: center;
+}
+
+.login-card form p {
+  margin-bottom: 1.2rem;
+  color: #495057;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.login-card label {
+  margin-bottom: 0.35rem;
+  font-weight: 700;
+}
+
+.login-card input {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 12px 15px;
+  color: #495057;
+  background-color: #fdfdfd;
+  border: 1.5px solid #ced4da;
+  border-radius: 10px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.login-card input:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #28a745;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.login-card .btn-primary {
+  padding: 12px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  background-color: #28a745;
+  border-color: #28a745;
+  border-radius: 10px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.login-card .btn-primary:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.login-card .btn-primary:active {
+  transform: scale(0.98);
+}
+
+.login-error {
+  padding: 0.75rem;
+  color: #842029;
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  font-size: 0.85rem;
+  border-radius: 0.375rem;
+}
+
+.login-card .errorlist {
+  margin-bottom: 1rem;
+  padding: 10px;
+  color: #dc3545;
+  font-size: 0.85rem;
+  list-style: none;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+}
+
+.login-back-link {
+  display: block;
+  margin-top: 1rem;
+  color: #6c757d;
+  text-align: center;
 }
 
 hr {
@@ -10875,10 +11106,12 @@ p {
   border-radius: 100%;
 }
 
+/* Estilos iniciales de la barra (Transparente y fija arriba) */
 #mainNav {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  background-color: #212529;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  background-color: transparent;
+  transition: background-color 0.3s ease-in-out, padding-top 0.3s ease-in-out, padding-bottom 0.3s ease-in-out;
 }
 #mainNav .navbar-toggler {
   padding: 0.75rem;
@@ -10888,14 +11121,22 @@ p {
   font-weight: 700;
 }
 #mainNav .navbar-brand {
+  display: flex;
+  align-items: center;
   color: #ffc800;
-  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-weight: 700;
+  font-family: "Kaushan Script", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.5rem;
+  transition: font-size 0.3s ease-in-out;
   letter-spacing: 0.0625em;
   text-transform: uppercase;
+  padding: 0;
+  margin: 0;
 }
 #mainNav .navbar-brand img {
-  height: 1.5rem;
+  height: 3.5rem;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
 }
 #mainNav .navbar-nav .nav-item .nav-link {
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -10903,8 +11144,22 @@ p {
   color: #fff;
   letter-spacing: 0.0625em;
 }
-#mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
+#mainNav .navbar-nav .nav-item .nav-link:hover,
+#mainNav .navbar-nav .nav-item .nav-link.active {
   color: #ffc800;
+}
+
+/* ==========================================================
+   ESTILOS CUANDO SE HACE SCROLL (Clase añadida por JS)
+   ========================================================== */
+#mainNav.navbar-shrink {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #212529;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+#mainNav.navbar-shrink .navbar-brand {
+  font-size: 1.25rem;
 }
 
 @media (min-width: 992px) {
@@ -10948,18 +11203,27 @@ header.masthead {
   text-align: center;
   color: #fff;
   background-color: #212529;
-  background-image: url("img/team/header-bg.jpg");
+  background-image: url("/static/img/team/header.avif");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
   background-size: cover;
 }
 header.masthead .masthead-subheading {
-  font-size: 1.5rem;
-  font-style: italic;
-  line-height: 1.5rem;
-  margin-bottom: 25px;
-  font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  display: inline-block;
+  max-width: min(90vw, 560px);
+  padding: 0.65rem 1.25rem;
+  margin: 0 auto 1.25rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.28);
+  color: #fff;
+  font-size: 1.35rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 header.masthead .masthead-heading {
   font-size: 3.25rem;
@@ -10975,10 +11239,9 @@ header.masthead .masthead-heading {
     padding-bottom: 12.5rem;
   }
   header.masthead .masthead-subheading {
-    font-size: 2.25rem;
-    font-style: italic;
-    line-height: 2.25rem;
-    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    line-height: 1.35;
+    margin-bottom: 1.5rem;
   }
   header.masthead .masthead-heading {
     font-size: 4.5rem;
