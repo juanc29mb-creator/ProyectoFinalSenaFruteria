@@ -1,0 +1,126 @@
+/* =========================================
+   ESTILOS PARA EL PANEL ADMINISTRATIVO
+   ========================================= */
+
+:root {
+    --sidebar-width: 260px;
+    --primary-color: #2c3e50;
+    --accent-color: #28a745;
+    --bg-light: #f8f9fa;
+    --text-dark: #333333;
+}
+
+body {
+    background-color: var(--bg-light);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    color: var(--text-dark);
+}
+
+/* Contenedor general del layout */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Barra lateral (Sidebar) */
+.dashboard-sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--primary-color);
+    color: #ffffff;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-sidebar h4 {
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #28a745;
+    letter-spacing: 0.5px;
+}
+
+.dashboard-sidebar .nav-link {
+    color: #adb5bd;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.dashboard-sidebar .nav-link:hover,
+.dashboard-sidebar .nav-link.active {
+    color: #ffffff;
+    background-color: rgba(40, 167, 69, 0.2);
+    border-left: 4px solid var(--accent-color);
+}
+
+/* Contenido Principal */
+.dashboard-content {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    padding: 40px;
+}
+
+/* Tarjetas de Métricas (KPI Cards) */
+.dash-card {
+    border: none;
+    border-radius: 12px;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.dash-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.dash-card h5 {
+    font-size: 0.9rem;
+    color: #6c757d;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.dash-card h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+/* Tablas dentro del dashboard */
+.dash-table-container {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    margin-top: 30px;
+}
+
+/* Adaptabilidad para dispositivos móviles */
+@media (max-width: 768px) {
+    .dashboard-sidebar {
+        width: 100%;
+        position: relative;
+        height: auto;
+    }
+    .dashboard-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+    .dashboard-container {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Administrativo - El Paso Mercado Campesino</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tu archivo CSS independiente para el dashboard -->
+    <link rel="stylesheet" href="{% static 'panel.css' %}">
+</head>
+<body>
+    <!-- Aquí va la estructura de tu dashboard -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="dashboard-sidebar">
+            <h4>Panel Admin</h4>
+            <ul class="nav flex-column">
+                <li class="nav-item"><a class="nav-link active" href="#">Resumen</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Productos</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Pedidos</a></li>
+                <li class="nav-item mt-4">
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="nav-link text-danger border-0 bg-transparent">Cerrar Sesión</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Contenido -->
+        <main class="dashboard-content">
+            <h2 class="mb-4">Bienvenido al Panel</h2>
+            
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="dash-card">
+                        <h5>Productos Totales</h5>
+                        <h3>{{ total_productos }}</h3>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="dash-card">
+                        <h5>Usuarios Registrados</h5>
+                        <h3>{{ total_usuarios }}</h3>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
