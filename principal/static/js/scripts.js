@@ -9,6 +9,30 @@
 
 window.addEventListener('DOMContentLoaded', event => {
 
+    const navbar = document.getElementById('mainNav');
+    let lastScrollTop = 0;
+
+    const controlarNavbar = function () {
+        if (!navbar) {
+            return;
+        }
+
+        const scrollTop = window.scrollY;
+
+        if (scrollTop <= 20) {
+            navbar.classList.add('nav-transparent');
+            navbar.classList.remove('nav-scrolled');
+        } else if (scrollTop > lastScrollTop) {
+            navbar.classList.remove('nav-transparent');
+            navbar.classList.add('nav-scrolled');
+        } else {
+            navbar.classList.add('nav-transparent');
+            navbar.classList.remove('nav-scrolled');
+        }
+
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    };
+
     // Navbar shrink function
     var navbarShrink = function () {
         const navbarCollapsible = document.body.querySelector('#mainNav');
@@ -25,9 +49,11 @@ window.addEventListener('DOMContentLoaded', event => {
 
     // Shrink the navbar 
     navbarShrink();
+    controlarNavbar();
 
     // Shrink the navbar when page is scrolled
     document.addEventListener('scroll', navbarShrink);
+    window.addEventListener('scroll', controlarNavbar);
 
     //  Activate Bootstrap scrollspy on the main nav element
     const mainNav = document.body.querySelector('#mainNav');
