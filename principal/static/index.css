@@ -139,6 +139,65 @@ body {
     margin: 0;
 }
 
+.btn-admin {
+    display: inline-flex;
+    align-items: center;
+    background: var(--green-deep, #143525);
+    color: #ffffff !important;
+    padding: 0.65rem 1.2rem;
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.btn-admin:hover {
+    background: #0d2319;
+    color: #ffffff !important;
+    transform: translateY(-1px);
+}
+
+.btn-login {
+    display: inline-flex;
+    align-items: center;
+    background: #f1f3f0;
+    color: var(--green-deep, #143525) !important;
+    border: 1px solid #d4ded7;
+    padding: 0.65rem 1.2rem;
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.btn-login:hover {
+    background: #e3eae5;
+}
+
+.btn-logout {
+    display: inline-flex;
+    align-items: center;
+    background: #dc3545;
+    color: #ffffff;
+    border: none;
+    padding: 0.65rem 1.2rem;
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.btn-logout:hover {
+    background: #c82333;
+    transform: translateY(-1px);
+}
+
 .btn-whatsapp {
     display: flex;
     align-items: center;

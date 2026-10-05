@@ -992,4 +992,13 @@ button {
         grid-template-columns: 1fr;
       }
     }
- 
+
+    .badge-status {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: #e8f5e9;
+      color: #2e7d32;
+    }

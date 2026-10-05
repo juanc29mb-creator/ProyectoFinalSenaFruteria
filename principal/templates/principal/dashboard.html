@@ -4,52 +4,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Dashboard</title>
+  <title>El Paso Frutería — Panel Administrativo</title>
   <link rel="stylesheet" href="{% static 'panel.css' %}">
-
-
 </head>
 
 <body>
   <div class="dashboard">
 
     <aside class="sidebar">
-      <div class="logo">Panel Administrativo </span></div>
+      <div class="logo">🌿 El Paso Frutería</div>
 
       <nav class="navigation" aria-label="Main navigation">
         <a class="active" href="#overview" aria-current="page">
-          <span class="nav-icon">▦</span> PRODUCTOS
+          <span class="nav-icon">▦</span> Resumen
         </a>
-        <a href="#balance">
-          <span class="nav-icon">▣</span> CATEGORIAS 
+        <a href="{% url 'catalogo_frutas' %}">
+          <span class="nav-icon">🍊</span> Catálogo de Frutas
         </a>
-        <a href="#transactions">
-          <span class="nav-icon">↗</span> Transactions
+        <a href="{% url 'index' %}">
+          <span class="nav-icon">🏪</span> Ir a la Tienda
         </a>
-        <a href="#bills">
-          <span class="nav-icon">▤</span> Bills
-        </a>
-        <a href="#expenses">
-          <span class="nav-icon">▧</span> Expenses
-        </a>
-        <a href="#goals">
-          <span class="nav-icon">⚑</span> Goals
-        </a>
-        <a href="#settings">
-          <span class="nav-icon">⚙</span> Settings
+        <a href="/admin/">
+          <span class="nav-icon">⚙</span> Django Admin
         </a>
       </nav>
 
       <div class="sidebar-bottom">
-        <a class="logout" href="#logout">
-          <span class="nav-icon">↪</span> Logout
-        </a>
+        <form action="{% url 'logout' %}" method="post" style="margin: 0; width: 100%;">
+          {% csrf_token %}
+          <button type="submit" class="logout" style="background:none; border:none; width: 100%; text-align: left; cursor: pointer; color: inherit; font: inherit;">
+            <span class="nav-icon">↪</span> Salir
+          </button>
+        </form>
 
-        <div class="profile">
-          <div class="avatar">TZ</div>
+        <div class="profile" style="margin-top: 10px;">
+          <div class="avatar">{{ request.user.username|slice:":2"|upper }}</div>
           <div>
-            <strong>Tanzir</strong>
-            <small>View profile</small>
+            <strong>{{ request.user.username|capfirst }}</strong>
+            <small>Administrador</small>
           </div>
         </div>
       </div>
@@ -58,16 +50,16 @@
     <main class="main" id="overview">
       <header class="topbar">
         <div class="greeting">
-          <h1>BIENVENIDO </h1>
-            <p>Panel Administrativo</p>
+          <h1>Hola, {{ request.user.username|capfirst }}</h1>
+          <span class="date">» &nbsp; El Paso Frutería • Panel de Control</span>
         </div>
 
         <div class="header-actions">
-          <button class="notification" aria-label="Notifications">♟</button>
+          <button class="notification" aria-label="Notifications">🔔</button>
           <label class="search">
             <input
               type="search"
-              placeholder="Search here"
+              placeholder="Buscar producto..."
               aria-label="Search"
             >
             <span aria-hidden="true">⌕</span>
@@ -79,35 +71,43 @@
         <section class="dashboard-products" aria-labelledby="products-heading">
           <div class="stats-row">
             <div class="dash-card">
-              <h5>Productos Totales</h5>
+              <h5>Productos Registrados</h5>
               <h3>{{ total_productos }}</h3>
             </div>
             <div class="dash-card">
-              <h5>Usuarios Registrados</h5>
+              <h5>Usuarios del Sistema</h5>
               <h3>{{ total_usuarios }}</h3>
+            </div>
+            <div class="dash-card">
+              <h5>Categorías Activas</h5>
+              <h3>{{ categorias.count|default:"5" }}</h3>
             </div>
           </div>
 
           <div class="products-table-container">
-            <h2 id="products-heading">Lista de Productos Registrados</h2>
+            <h2 id="products-heading">Inventario de Productos Frutícolas</h2>
             <table>
               <thead>
                 <tr>
                   <th scope="col">Nombre</th>
-                  <th scope="col">Precio</th>
-                  <th scope="col">Stock</th>
+                  <th scope="col">Categoría</th>
+                  <th scope="col">Precio Unitario</th>
+                  <th scope="col">Stock Disponible</th>
+                  <th scope="col">Estado</th>
                 </tr>
               </thead>
               <tbody>
                 {% for producto in productos %}
                 <tr>
-                  <td>{{ producto.nombre }}</td>
-                  <td>{{ producto.precio }}</td>
-                  <td>{{ producto.stock }}</td>
+                  <td><strong>{{ producto.nombre }}</strong></td>
+                  <td>{{ producto.categoria.nombre|default:"General" }}</td>
+                  <td>${{ producto.precio|floatformat:0 }}</td>
+                  <td>{{ producto.stock }} {{ producto.unidad_medida|default:"kg" }}</td>
+                  <td><span class="badge-status">{{ producto.estado|default:"Disponible" }}</span></td>
                 </tr>
                 {% empty %}
                 <tr>
-                  <td class="empty-products" colspan="3">No hay productos registrados todavía.</td>
+                  <td class="empty-products" colspan="5">No hay productos registrados todavía.</td>
                 </tr>
                 {% endfor %}
               </tbody>
