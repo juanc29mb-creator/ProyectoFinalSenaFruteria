@@ -65,6 +65,14 @@
         "documentation": {}
     },
     {
+        "label": "get_user_model",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
         "label": "logout",
         "importPath": "django.contrib.auth",
         "description": "django.contrib.auth",
@@ -89,14 +97,6 @@
         "documentation": {}
     },
     {
-        "label": "inicio",
-        "importPath": "principal.views",
-        "description": "principal.views",
-        "isExtraImport": true,
-        "detail": "principal.views",
-        "documentation": {}
-    },
-    {
         "label": "logout_view",
         "importPath": "principal.views",
         "description": "principal.views",
@@ -113,11 +113,20 @@
         "documentation": {}
     },
     {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
+        "label": "django.db.models.deletion",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "django.apps",
+        "importPath": "django.db.models.deletion",
+        "description": "django.db.models.deletion",
+        "detail": "django.db.models.deletion",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
         "documentation": {}
     },
     {
@@ -126,6 +135,22 @@
         "description": "django.db",
         "isExtraImport": true,
         "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
         "documentation": {}
     },
     {
@@ -534,7 +559,7 @@
         "kind": 5,
         "importPath": "config.urls",
         "description": "config.urls",
-        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', index, name='index'),\n    path('index/', index, name='index'),\n    path('inicio/', inicio, name='inicio'),\n    path('dashboard/', dashboard_view, name='dashboard'),\n    path('accounts/login/', auth_views.LoginView.as_view(template_name='principal/login.html'), name='login'),\n    path('accounts/logout/', logout_view, name='logout'),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', index, name='index'),\n    path('index/', index, name='index'),\n    path('dashboard/', dashboard_view, name='dashboard'),\n    path('accounts/login/', auth_views.LoginView.as_view(template_name='principal/login.html'), name='login'),\n    path('accounts/logout/', logout_view, name='logout'),\n]",
         "detail": "config.urls",
         "documentation": {}
     },
@@ -545,6 +570,15 @@
         "description": "config.wsgi",
         "peekOfCode": "application = get_wsgi_application()",
         "detail": "config.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "principal.migrations.0001_initial",
+        "description": "principal.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Categoria',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('nombre', models.CharField(max_length=100, unique=True)),",
+        "detail": "principal.migrations.0001_initial",
         "documentation": {}
     },
     {
@@ -561,7 +595,25 @@
         "kind": 6,
         "importPath": "principal.models",
         "description": "principal.models",
-        "peekOfCode": "class Categoria(models.Model):\n    nombre = models.CharField(max_length=100, unique=True)\n    descripcion = models.TextField(blank=True, null=True)\n    def __str__(self):\n        return self.nombre",
+        "peekOfCode": "class Categoria(models.Model):\n    nombre = models.CharField(max_length=100, unique=True)\n    descripcion = models.TextField(blank=True, null=True)\n    def __str__(self):\n        return self.nombre              \n#2 Tabla de productos \nclass Producto(models.Model):\n    nombre = models.CharField(max_length=150)\n    precio = models.DecimalField(max_digits=10, decimal_places=2)\n    stock = models.IntegerField(default=0)",
+        "detail": "principal.models",
+        "documentation": {}
+    },
+    {
+        "label": "Producto",
+        "kind": 6,
+        "importPath": "principal.models",
+        "description": "principal.models",
+        "peekOfCode": "class Producto(models.Model):\n    nombre = models.CharField(max_length=150)\n    precio = models.DecimalField(max_digits=10, decimal_places=2)\n    stock = models.IntegerField(default=0)\n# Relación (Llave Foránea): Un producto pertenece a una categoría\n    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)\n    fecha_registro = models.DateTimeField(auto_now_add=True)\n    def __str__(self):\n       return f\"{self.nombre} - Stock: {self.stock}\"\nclass Cliente(models.Model):",
+        "detail": "principal.models",
+        "documentation": {}
+    },
+    {
+        "label": "Cliente",
+        "kind": 6,
+        "importPath": "principal.models",
+        "description": "principal.models",
+        "peekOfCode": "class Cliente(models.Model):\n    nombre = models.CharField(max_length=100)\n    correo_electronico = models.EmailField(unique=True)\n    telefono = models.CharField(max_length=20, blank=True, null=True)\n    direccion = models.TextField(blank=True, null=True)\n    def __str__(self):\n        return self.nombre",
         "detail": "principal.models",
         "documentation": {}
     },
@@ -579,7 +631,7 @@
         "kind": 2,
         "importPath": "principal.views",
         "description": "principal.views",
-        "peekOfCode": "def dashboard_view(request):\n    # Tu lógica del dashboard\n    return render(request, 'principal/dashboard.html')\ndef logout_view(request):\n    logout(request)\n    return redirect('inicio')",
+        "peekOfCode": "def dashboard_view(request):\n    User = get_user_model()\n    context = {\n        'productos': Producto.objects.all(),\n        'total_productos': Producto.objects.count(),\n        'total_usuarios': User.objects.count(),\n    }\n    return render(request, 'principal/dashboard.html', context)\ndef logout_view(request):\n    logout(request)",
         "detail": "principal.views",
         "documentation": {}
     },
